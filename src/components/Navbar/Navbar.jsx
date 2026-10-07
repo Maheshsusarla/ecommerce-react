@@ -21,6 +21,7 @@ const Navbar = () => {
         <div className="nav-links">
             <NavLink to="/products" >Products</NavLink>
             <NavLink to="/cart" >🛒 Cart ({totalItems})</NavLink>
+            <NavLink to="/orders" >My Orders</NavLink>
             <NavLink to="/contact" >Contact Us</NavLink>
         </div>
 

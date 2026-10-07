@@ -27,7 +27,7 @@ const Cart = () => {
                 <>
                     {cart.map((item) => (
                         <div className="cart-item" key={item.id}>
-                            <img src={item.image} alt={item.title} />
+                            <img src={item.thumbnail} alt={item.title} />
 
                             <div className="cart-info">
                                 <h4>{item.title}</h4>
@@ -58,7 +58,7 @@ const Cart = () => {
                             <button className="clear-btn" onClick={clearCart}>
                                 Clear Cart
                             </button>
-                            <button className="checkout-btn">Checkout</button>
+                            <button className="checkout-btn" onClick={()=>navigate("/checkout")}>Checkout</button>
                         </div>
                     </div>
 

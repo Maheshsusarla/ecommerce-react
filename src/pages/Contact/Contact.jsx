@@ -45,7 +45,6 @@ const Contact = () => {
                 <input type="text" placeholder='Name' value={name} onChange={(e)=>setName(e.target.value)} />
                 <input type="email" placeholder='Email' value={email} onChange={(e)=>setEmail(e.target.value)} />
                 <textarea rows="5" placeholder='Mee message ikkada raayandi...' value={message} onChange={(e)=>setMessage(e.target.value)} />
-
                     <button type="submit">Send Message</button>
             </form>
         </div>
