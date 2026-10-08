@@ -9,6 +9,7 @@ import Layout from './components/Layout/Layout'
 import ProductDetails from './pages/ProductDetails/ProductDetails'
 import Checkout from './pages/Checkout/Checkout'
 import Orders from './pages/Orders/Orders'
+import './App.css'
 const App = () => {
   return (
     <div>

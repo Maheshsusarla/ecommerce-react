@@ -2,9 +2,12 @@ import React from 'react'
 import {NavLink,useNavigate} from 'react-router-dom';
 import {useCart} from "../../context/CartContext";
 import "./Navbar.css"
+import { useTheme } from "../../context/ThemeContext";
 
 const Navbar = () => {
     const {totalItems}=useCart();
+
+    const { theme, toggleTheme } = useTheme();
 
     const navigate=useNavigate();
 
@@ -24,6 +27,9 @@ const Navbar = () => {
             <NavLink to="/orders" >My Orders</NavLink>
             <NavLink to="/contact" >Contact Us</NavLink>
         </div>
+        <button className="theme-btn" onClick={toggleTheme}>
+  {theme === "light" ? "🌙" : "☀️"}
+</button>
 
         <div className='nav-user'>
             <span>Hi , {currentUser?.name} 👋</span>

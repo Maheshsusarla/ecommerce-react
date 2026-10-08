@@ -1,6 +1,6 @@
 .checkout-page {
   padding: 20px;
-  background: #f0f2f5;
+  background: var(--bg);
   min-height: calc(100vh - 60px);
 }
 
@@ -8,14 +8,15 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .checkout-form,
 .order-summary {
-  background: white;
+  background: var(--card);
   padding: 25px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .checkout-form {
@@ -29,7 +30,6 @@
 .order-summary {
   flex: 1;
   min-width: 260px;
-  height: fit-content;
 }
 
 .checkout-form h2,
@@ -40,15 +40,13 @@
 .checkout-form input,
 .checkout-form textarea {
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 15px;
-  font-family: inherit;
 }
 
 .checkout-form button {
   padding: 12px;
-  background: #2e7d32;
+  background: var(--success);
   color: white;
   border: none;
   border-radius: 6px;
@@ -56,31 +54,45 @@
   cursor: pointer;
 }
 
-.checkout-form .error {
-  color: red;
-  font-size: 14px;
-  margin: 0;
-}
-
 .payment {
-  color: #555;
+  color: var(--text-light);
   margin: 0;
 }
 
 .summary-item {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   margin-bottom: 10px;
   font-size: 14px;
 }
 
-.empty {
-  text-align: center;
-  margin-top: 40px;
-  font-size: 18px;
+.order-summary hr {
+  border: none;
+  border-top: 1px solid var(--border);
 }
 
-.back-link {
-  color: #2874f0;
-  text-decoration: none;
+/* mobile: order summary mundu, form tarvata */
+@media (max-width: 768px) {
+  .checkout-wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .checkout-form,
+  .order-summary {
+    width: 100%;
+    min-width: 0;
+    flex: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .checkout-page {
+    padding: 12px;
+  }
+
+  .checkout-form,
+  .order-summary {
+    padding: 18px;
+  }
 }

@@ -23,7 +23,7 @@ const Cart = () => {
 
             </div>
             {cart.length === 0 ? (
-                <p className="empty">Cart empty ga undi mama 😅</p>) : (
+                <p className="empty">The cart is empty, brother</p>) : (
                 <>
                     {cart.map((item) => (
                         <div className="cart-item" key={item.id}>

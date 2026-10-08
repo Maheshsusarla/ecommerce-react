@@ -43,7 +43,7 @@ function ProductDetails() {
       <img src={product.thumbnail} alt={product.title} />
 
       <div className="details-info">
-        <p className="category">{product.category}</p>
+        <p className="category">{product.category?.name || product.category}</p>
         <h2>{product.title}</h2>
         <p className="brand">Brand: {product.brand}</p>
         <p className="rating">⭐ {product.rating}</p>

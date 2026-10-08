@@ -11,7 +11,41 @@ const Products = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
+    const [categories, setCategories] = useState([]);
+    const [selectedCategory, setSelectedCategory] = useState("all");
+    const [sortBy, setSortBy] = useState("default");
+
     const { addToCart } = useCart();
+
+
+    // filter use
+    useEffect(() => {
+        fetch("https://dummyjson.com/products/categories")
+            .then((res) => res.json())
+            .then((data) => setCategories(data));
+    }, []);
+
+    useEffect(() => {
+        setLoading(true);
+        const url =
+            selectedCategory === "all"
+                ? "https://dummyjson.com/products"
+                : `https://dummyjson.com/products/category/${selectedCategory}`;
+
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => {
+                setProducts(data.products);
+                setLoading(false);
+            })
+            .catch(() => {
+                setError("The products failed to load. Please try again.");
+                setLoading(false);
+            });
+    }, [selectedCategory]);
+
+
+
 
     // fetch the data from api
     useEffect(() => {
@@ -19,7 +53,6 @@ const Products = () => {
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data.products);
-                console.log(products);
                 setLoading(false);
             })
             .catch(() => {
@@ -31,9 +64,24 @@ const Products = () => {
 
 
     // search matched products
-    const filteredProducts = products.filter((p) =>
-        p.title.toLowerCase().includes(search.toLowerCase())
+    // const filteredProducts = products.filter((p) =>
+    //     p.title.toLowerCase().includes(search.toLowerCase())
+    // );
+    // 1. search + category filter
+    let filteredProducts = products.filter(
+        (p) =>
+            p.title.toLowerCase().includes(search.toLowerCase()) &&
+            (selectedCategory === "all" || p.category === selectedCategory)
     );
+
+    // sorting
+    if (sortBy === "low") {
+        filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
+    } else if (sortBy === "high") {
+        filteredProducts = [...filteredProducts].sort((a, b) => b.price - a.price);
+    } else if (sortBy === "rating") {
+        filteredProducts = [...filteredProducts].sort((a, b) => b.rating - a.rating);
+    }
 
     if (loading) return <h2 className="status">Loading...</h2>;
     if (error) return <h2 className="status">{error}</h2>;
@@ -48,6 +96,36 @@ const Products = () => {
                 onChange={(e) => setSearch(e.target.value)}
             />
 
+            <div className="filter-bar">
+                <div className="category-buttons">
+
+                    <button
+                        className={selectedCategory === "all" ? "cat-btn active" : "cat-btn"}
+                        onClick={() => setSelectedCategory("all")}
+                    >
+                        All
+                    </button>
+
+                    {categories.map((cat) => (
+                        <button
+                            key={cat.slug}
+                            className={selectedCategory === cat ? "active" : ""}
+                            onClick={() => setSelectedCategory(cat.slug)}
+                        >
+                            {cat.name}
+                        </button>
+                    ))}
+                </div>
+
+                <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+                    <option value="default">Sort by</option>
+                    <option value="low">Price: Low to High</option>
+                    <option value="high">Price: High to Low</option>
+                    <option value="rating">Top Rated</option>
+                </select>
+            </div>
+
+            <p className="result-count">{filteredProducts.length} products found</p>
             <div className="products-grid">
                 {filteredProducts.map((product) => (
                     <div className="product-card" key={product.id}>

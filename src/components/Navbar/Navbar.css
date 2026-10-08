@@ -5,8 +5,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   padding: 12px 24px;
-  background: #2874f0;
+  background: var(--nav-bg);
   color: white;
 }
 
@@ -25,7 +27,6 @@
   padding-bottom: 3px;
 }
 
-/* ippudu unna page link ki underline */
 .nav-links a.active {
   border-bottom: 2px solid white;
   font-weight: bold;
@@ -39,9 +40,38 @@
 
 .nav-user button {
   padding: 6px 14px;
-  background: #e53935;
+  background: var(--danger);
   color: white;
   border: none;
   border-radius: 6px;
   cursor: pointer;
+}
+
+.nav-user .theme-btn {
+  background: transparent;
+  border: 1px solid white;
+  font-size: 16px;
+  padding: 4px 10px;
+}
+
+/* tablet / mobile */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 16px;
+  }
+
+  /* links ni kinda separate row lo */
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: space-around;
+    gap: 10px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-user span {
+    display: none; /* chinna screen lo "Hi, name" hide */
+  }
 }

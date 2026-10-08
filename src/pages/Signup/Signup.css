@@ -3,15 +3,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #f0f2f5;
+  background: var(--bg);
+  padding: 20px;
 }
 
 .signup-form {
-  background: white;
+  background: var(--card);
   padding: 30px;
-  width: 320px;
+  width: 100%;
+  max-width: 340px;
   border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px var(--shadow);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -19,18 +21,18 @@
 
 .signup-form h2 {
   text-align: center;
+  margin: 0 0 5px;
 }
 
 .signup-form input {
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 15px;
 }
 
 .signup-form button {
   padding: 10px;
-  background: #2874f0;
+  background: var(--primary);
   color: white;
   border: none;
   border-radius: 6px;
@@ -39,10 +41,19 @@
 }
 
 .signup-form button:hover {
-  background: #1a5fd0;
+  background: var(--primary-hover);
 }
 
-.signup-form .error {
-  color: red;
-  font-size: 18px;
+.signup-form p {
+  margin: 0;
+}
+
+.signup-form a {
+  color: var(--primary);
+}
+
+@media (max-width: 480px) {
+  .signup-form {
+    padding: 22px 18px;
+  }
 }

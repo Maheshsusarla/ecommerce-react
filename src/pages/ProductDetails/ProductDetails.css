@@ -1,28 +1,26 @@
 .details-page {
   padding: 20px;
-  background: #f0f2f5;
+  background: var(--bg);
   min-height: calc(100vh - 60px);
 }
 
-.back-link {
-  color: #2874f0;
-  text-decoration: none;
-}
-
 .details-card {
-  background: white;
+  background: var(--card);
   display: flex;
   gap: 40px;
   padding: 30px;
   margin-top: 20px;
   border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .details-card img {
   width: 300px;
   height: 300px;
   object-fit: contain;
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
 }
 
 .details-info {
@@ -31,7 +29,7 @@
 
 .category {
   text-transform: capitalize;
-  color: #757575;
+  color: var(--text-light);
   margin: 0 0 8px;
 }
 
@@ -45,18 +43,18 @@
 
 .description {
   line-height: 1.6;
-  color: #444;
+  color: var(--text-light);
 }
 
 .details-price {
   font-size: 26px;
   font-weight: bold;
-  color: #2874f0;
+  color: var(--primary);
 }
 
 .details-info button {
   padding: 12px 24px;
-  background: #2874f0;
+  background: var(--primary);
   color: white;
   border: none;
   border-radius: 6px;
@@ -65,80 +63,35 @@
 }
 
 .details-info button:hover {
-  background: #1a5fd0;
+  background: var(--primary-hover);
 }
 
-.status {
-  text-align: center;
-  margin-top: 40px;
-}
-
-/* mobile lo image paina, info kinda */
-@media (max-width: 700px) {
+/* tablet / mobile */
+@media (max-width: 768px) {
   .details-card {
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .details-card img {
+    width: 100%;
+    max-width: 260px;
+    height: 260px;
+  }
+
+  .details-info {
+    width: 100%;
   }
 }
 
+@media (max-width: 480px) {
+  .details-page {
+    padding: 12px;
+  }
 
-
-.brand {
-  color: #555;
-  font-size: 14px;
-  margin: 4px 0;
-}
-
-.price-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 0;
-}
-
-.discount-badge {
-  background: #e8f5e9;
-  color: #2e7d32;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-.in-stock {
-  color: #2e7d32;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.out-stock {
-  color: #e53935;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.extra-info {
-  background: #f7f7f7;
-  padding: 10px 14px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-}
-
-.extra-info p {
-  margin: 6px 0;
-  font-size: 14px;
-}
-
-.add-btn {
-  padding: 10px 20px;
-  background: #2874f0;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.add-btn:hover {
-  background: #1a5fd0;
+  .details-info button {
+    width: 100%;
+  }
 }
